@@ -1,0 +1,32 @@
+.app {
+  width: 960px;
+  padding-top: 64px;
+}
+
+.header {
+  margin-bottom: 24px;
+
+  > .h1 {
+    margin-right: 12px;
+  }
+
+  > .h5 {
+    color: #999;
+  }
+}
+
+// Schedule
+
+.table-schedule {
+  th:nth-child(1) {
+    width: 15%;
+  }
+
+  th:nth-child(3) {
+    width: 25%;
+  }
+
+  th:nth-child(4) {
+    width: 13%;
+  }
+}

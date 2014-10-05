@@ -1,0 +1,70 @@
+<%= form_for Reminder.new, remote: true do |f| %>
+  <div class="form-group">
+    <%= f.label :content, "What do you want to say?", class: "control-label" %>
+    <%= f.text_area :content, class: "form-control", rows: 3 %>
+  </div>
+
+  <label class="control-label" for="reminder_method">
+    How do you want to send it?
+  </label>
+
+  <div class="form-group">
+    <label class="checkbox-inline">
+      <%= f.check_box :postcard %> Postcard
+    </label>
+    <label class="checkbox-inline">
+      <%= f.check_box :phone %> Phone Call
+    </label>
+    <label class="checkbox-inline">
+      <%= f.check_box :sms %> Text Message
+    </label>
+    <label class="checkbox-inline">
+      <%= f.check_box :email %> Email
+    </label>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :scheduled_at, "When should we send it?", class: "control-label" %>
+    <div class="row">
+      <div class="col-sm-4">
+        <%= f.label :scheduled_at_date, "Date" %>
+        <%= f.text_field :scheduled_at_date, class: "form-control", data: { provide: "datepicker" } %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.label :scheduled_at_time, "Time" %>
+        <%= f.text_field :scheduled_at_time, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <%= f.submit "Schedule the reminder", class: "btn btn-primary", data: { disable_with: "Scheduling..." } %>
+<% end %>
+
+<hr>
+
+<table class="table table-schedule">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Content</th>
+      <th>Recipient</th>
+      <th>Medium</th>
+    </tr>
+  </thead>
+  <% @reminders.each do |reminder| %>
+    <tr>
+      <td>
+        <%= reminder.scheduled_at.strftime("%b %-d, %Y") %><br>
+        <%= reminder.scheduled_at.strftime("%l:%M %P") %>
+      </td>
+      <td><%= simple_format reminder.content %></td>
+      <td></td>
+      <td>
+        <span class="glyphicon glyphicon-file"></span>
+        <span class="glyphicon glyphicon-earphone"></span>
+        <span class="glyphicon glyphicon-phone"></span>
+        <span class="glyphicon glyphicon-envelope"></span>
+      </td>
+    </tr>
+  <% end %>
+</table>

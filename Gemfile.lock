@@ -27,7 +27,12 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    annotate (2.6.5)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arel (5.0.1.20140414130214)
+    autoprefixer-rails (3.1.0.20140911)
+      execjs
     awesome_print (1.2.0)
     better_errors (2.0.0)
       coderay (>= 1.0.0)
@@ -35,6 +40,11 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.2.0.2)
+      sass (~> 3.2)
+    browser-timezone-rails (0.0.8)
+      jquery-rails
+      rails (>= 3.1)
     builder (3.2.2)
     coderay (1.1.0)
     coffee-rails (4.0.1)
@@ -159,6 +169,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
+    timeliness (0.3.7)
     turbolinks (2.4.0)
       coffee-rails
     tzinfo (1.2.2)
@@ -177,8 +188,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate (~> 2.6.5)
+  autoprefixer-rails
   better_errors
   binding_of_caller
+  bootstrap-sass (~> 3.2.0)
+  browser-timezone-rails
   coffee-rails (~> 4.0.0)
   jazz_hands
   jbuilder (~> 2.0)
@@ -187,6 +202,7 @@ DEPENDENCIES
   rails (= 4.1.6)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  timeliness
   turbolinks
   uglifier (>= 1.3.0)
   unicorn
