@@ -68,4 +68,5 @@ private
   def strip_whitespace(string)
     string.gsub(" ", "") rescue nil
   end
+
 end
