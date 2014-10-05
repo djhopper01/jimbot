@@ -30,3 +30,13 @@
     width: 13%;
   }
 }
+
+.reminder-methods {
+  > .glyphicon {
+    @include opacity(0.2);
+  }
+
+  > .medium-enabled {
+    @include opacity(1);
+  }
+}

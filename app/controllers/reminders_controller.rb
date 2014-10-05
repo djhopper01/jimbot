@@ -5,7 +5,7 @@ class RemindersController < ApplicationController
   respond_to :html, only: :index
 
   def index
-    @reminders = current_account.reminders.scheduled
+    @reminders = current_account.reminders.scheduled.decorate
     respond_with(@reminders)
   end
 
@@ -13,11 +13,11 @@ class RemindersController < ApplicationController
     @reminder = Reminder.new(reminder_params)
     respond_with(@reminder) do |format|
       if @reminder.save
-        flash[:notice] = "Good news! We just scheduled your reminder."
+        flash.now[:notice] = "Good news! We just scheduled your reminder."
 
         format.js
       else
-        flash[:error] = "Oops! Something went wrong. Check out the errors below."
+        flash.now[:error] = "Oops! Something went wrong. Check out the errors below."
 
         format.js { render_js_error(@reminder) }
       end
@@ -25,7 +25,18 @@ class RemindersController < ApplicationController
   end
 
   def update
+    @reminder = current_account.reminders.find(params[:id])
+    respond_with(@reminder) do |format|
+      if @reminder.update_attributes(reminder_params)
+        flash.now[:notice] = "Great! Your reminder has been updated."
 
+        format.js
+      else
+        flash.now[:error] = "Oops! Something went wrong. Check out the errors below."
+
+        format.js { render_js_error(@reminder) }
+      end
+    end
   end
 
   def destroy

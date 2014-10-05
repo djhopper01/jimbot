@@ -15,6 +15,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'timeliness'
 gem 'browser-timezone-rails'
+gem 'draper', '~> 1.3'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

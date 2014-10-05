@@ -59,11 +59,11 @@
       </td>
       <td><%= simple_format reminder.content %></td>
       <td></td>
-      <td>
-        <span class="glyphicon glyphicon-file"></span>
-        <span class="glyphicon glyphicon-earphone"></span>
-        <span class="glyphicon glyphicon-phone"></span>
-        <span class="glyphicon glyphicon-envelope"></span>
+      <td class="reminder-methods">
+        <span class="glyphicon <%= reminder.postcard_classes %>"></span>
+        <span class="glyphicon <%= reminder.phone_classes %>"></span>
+        <span class="glyphicon <%= reminder.sms_classes %>"></span>
+        <span class="glyphicon <%= reminder.email_classes %>"></span>
       </td>
     </tr>
   <% end %>
