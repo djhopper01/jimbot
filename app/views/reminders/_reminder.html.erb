@@ -1,0 +1,19 @@
+<tr id="reminder-<%= reminder.id %>">
+  <td>
+    <% if reminder.editable? %>
+      <%= link_to "Edit", edit_reminder_path(reminder), class: "edit-reminder" %>
+    <% end %>
+  </td>
+  <td>
+    <%= reminder.scheduled_at_date %><br>
+    <%= reminder.scheduled_at_time %>
+  </td>
+  <td><%= simple_format reminder.content %></td>
+  <td></td>
+  <td class="reminder-methods">
+    <span class="glyphicon <%= reminder.postcard_classes %>"></span>
+    <span class="glyphicon <%= reminder.phone_classes %>"></span>
+    <span class="glyphicon <%= reminder.sms_classes %>"></span>
+    <span class="glyphicon <%= reminder.email_classes %>"></span>
+  </td>
+</tr>

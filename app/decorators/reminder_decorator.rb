@@ -16,4 +16,17 @@ class ReminderDecorator < Draper::Decorator
     end
   end
 
+  # Form helpers to repopulate these fields when editing
+  def scheduled_at_date
+    (model.scheduled_at || Time.zone.now + 7.days).strftime("%m/%-d/%Y")
+  end
+
+  def scheduled_at_time
+    (model.scheduled_at || Time.zone.now + 7.days).strftime("%-l:%M %P")
+  end
+
+  def submit_text
+    persisted? ? "Update" : "Schedule reminder"
+  end
+
 end

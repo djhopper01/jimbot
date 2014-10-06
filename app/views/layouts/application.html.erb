@@ -38,6 +38,12 @@
       </div>
 
       <div class="col-sm-9">
+        <% if flash[:notice] %>
+          <div class="alert alert-info">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+
         <%= yield %>
       </div>
     </div>

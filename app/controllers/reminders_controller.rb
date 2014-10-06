@@ -1,8 +1,8 @@
 class RemindersController < ApplicationController
 
-  respond_to :json
+  respond_to :json, except: :edit
   respond_to :js, except: :index
-  respond_to :html, only: :index
+  respond_to :html, only: [:index, :edit]
 
   def index
     @reminders = current_account.reminders.scheduled.decorate
@@ -24,11 +24,17 @@ class RemindersController < ApplicationController
     end
   end
 
+  def edit
+    @reminder = current_account.reminders.find(params[:id]).decorate
+    flash.now[:notice] = "This reminder was originally scheduled for #{@reminder.scheduled_at_time} on #{@reminder.scheduled_at_date}."
+    respond_with(@reminder)
+  end
+
   def update
     @reminder = current_account.reminders.find(params[:id])
     respond_with(@reminder) do |format|
       if @reminder.update_attributes(reminder_params)
-        flash.now[:notice] = "Great! Your reminder has been updated."
+        flash[:notice] = "Great! Your reminder has been updated."
 
         format.js
       else

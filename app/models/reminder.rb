@@ -29,16 +29,16 @@ class Reminder < ActiveRecord::Base
   attr_accessor :scheduled_at_date, :scheduled_at_time
 
   def self.scheduled
-    where(deleted_at: nil)
+    where(deleted_at: nil).order("scheduled_at ASC")
   end
 
-  # def scheduled_at_date
-  #   scheduled_at.to_date
-  # end
+  def archive!
+    update_attributes(deleted_at: Time.now)
+  end
 
-  # def scheduled_at_time
-  #   scheduled_at.to_time
-  # end
+  def editable?
+    Time.now < scheduled_at
+  end
 
 private
 
